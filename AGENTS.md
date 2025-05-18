@@ -12,3 +12,34 @@ Don't move any fields or methods. Everything is in the correct place.
 Exception messages were stripped out (where you see new RuntimeException("")) but we have other references to be able to restore them.
 Prefer official naming, but any name is better than none, as long as it's accurate.
 Document document document! If you get the urge to make something understandable with comments, go for it. People after us will love to learn about the engine.
+
+Repository overview
+===================
+The project is a deobfuscated Java client composed of a large set of packages in
+`src/main/java`.
+
+* `jagex3.client` – main application logic with the entry point `Client`.
+  * `applet` contains `GameShell`, input providers and the canvas wrapper.
+  * `ui` and `chat` host the user interface and messaging code.
+  * `obfuscation` implements runtime reflection checks.
+* `jagex3.config` – configuration types (objects, locations, sequences and more).
+* `jagex3.dash3d` – 3‑D engine and world representation.
+* `jagex3.datastruct` – custom data structures such as linked lists and caches.
+* `jagex3.graphics` – pixel buffers and font rendering utilities.
+* `jagex3.io` – I/O helpers, compression, and networking primitives.
+* `jagex3.js5` – the JS5 file system implementation.
+* `jagex3.midi` and `jagex3.sound` – MIDI playback and general audio support.
+* `jagex3.script` – client scripting engine.
+* `jagex3.wordfilter` – word filtering logic.
+* `deob` – deobfuscation helpers and runtime settings.
+
+The build is managed with Gradle. Java 8 toolchains are used, while source and
+target compatibility remain at 1.6. Launch the client with `gradle run`. The
+main class is `jagex3.client.Client`.
+
+Coding style notes
+------------------
+* Files use tab indentation.
+* Brace placement follows standard K&R style (`if () {` on one line).
+* Keep method and field layout intact—only rename and document.
+
