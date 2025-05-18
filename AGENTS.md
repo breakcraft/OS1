@@ -43,3 +43,18 @@ Coding style notes
 * Brace placement follows standard K&R style (`if () {` on one line).
 * Keep method and field layout intact—only rename and document.
 
+
+Subsystem overview
+------------------
+* **Networking** – `ClientStream` and `SignLink` manage socket connections.
+* **Scripting** – `ClientScript` definitions run via `ScriptRunner`.
+* **Rendering** – the `dash3d` and `graphics` packages draw the world and UI.
+
+Build & installation
+--------------------
+* Install JDK 8, for example with `sudo apt-get install openjdk-8-jdk`.
+* Compile using the Gradle wrapper: `./gradlew build`.
+* Start a server on ports 40000/50000, then run `./gradlew run`.
+* See `INSTALL.md` for command details.
+
+=======
