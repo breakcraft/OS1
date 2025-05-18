@@ -43,6 +43,7 @@ Coding style notes
 * Brace placement follows standard K&R style (`if () {` on one line).
 * Keep method and field layout intact—only rename and document.
 
+
 Subsystem overview
 ------------------
 * **Networking** – `ClientStream` and `SignLink` manage socket connections.
@@ -56,3 +57,4 @@ Build & installation
 * Start a server on ports 40000/50000, then run `./gradlew run`.
 * See `INSTALL.md` for command details.
 
+=======
