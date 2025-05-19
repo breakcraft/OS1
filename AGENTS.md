@@ -59,3 +59,18 @@ This project spans roughly 52k lines across about 185 Java files. The major subs
 
 The entry point is `jagex3.client.Client`, extending `GameShell` from the `applet` package. The `ref` folder stores mapping files used during the deobfuscation step.
 
+=======
+Subsystem overview
+------------------
+* **Networking** – `ClientStream` and `SignLink` manage socket connections.
+* **Scripting** – `ClientScript` definitions run via `ScriptRunner`.
+* **Rendering** – the `dash3d` and `graphics` packages draw the world and UI.
+
+Build & installation
+--------------------
+* Install JDK 8, for example with `sudo apt-get install openjdk-8-jdk`.
+* Compile using the Gradle wrapper: `./gradlew build`.
+* Start a server on ports 40000/50000, then run `./gradlew run`.
+* See `INSTALL.md` for command details.
+
+=======
