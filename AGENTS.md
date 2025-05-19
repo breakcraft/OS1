@@ -44,6 +44,22 @@ Coding style notes
 * Keep method and field layout intact—only rename and document.
 
 
+Deep dive
+=========
+This project spans roughly 52k lines across about 185 Java files. The major subsystems are:
+
+* **Networking** – `jagex3.io` and `jagex3.js5` implement the game protocol and cache system. `ClientStream` manages login handshakes while `Js5RemoteThread` pulls assets asynchronously.
+* **Rendering** – `jagex3.dash3d` and `jagex3.graphics` form a pure software renderer: `dash3d` describes the scene graph and collision grids, while `graphics` provides pixel buffers and fonts.
+* **Audio** – `jagex3.midi` and `jagex3.sound` decode and mix MIDI and PCM streams.
+* **UI** – `jagex3.client.ui` defines interface components and event hooks.
+* **Scripting** – `jagex3.script` includes the script interpreter with `ClientScript` and `ScriptRunner`.
+* **Data definitions** – `jagex3.config` supplies definitions such as NPCs, objects, animations and more.
+* **Utilities** – `jagex3.datastruct` provides linked lists, hash tables and other helpers.
+* **Deob tools** – `deob` houses runtime toggles (see `Settings`) and name references.
+
+The entry point is `jagex3.client.Client`, extending `GameShell` from the `applet` package. The `ref` folder stores mapping files used during the deobfuscation step.
+
+=======
 Subsystem overview
 ------------------
 * **Networking** – `ClientStream` and `SignLink` manage socket connections.
