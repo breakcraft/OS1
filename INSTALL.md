@@ -1,3 +1,4 @@
+=======
 # Build setup
 
 The following commands will install Java 8 and build the client using the Gradle wrapper:
@@ -29,4 +30,7 @@ sudo apt-get update && sudo apt-get install -y openjdk-8-jdk
 
 # Start a server on ports 40000/50000, then launch the client
 ./gradlew run
+```
+
+=======
 ```

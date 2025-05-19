@@ -44,6 +44,29 @@ Coding style notes
 * Keep method and field layout intact—only rename and document.
 
 
+Subsystem overview
+------------------
+**Networking** – `ClientStream` and `SignLink` manage socket connections and asynchronous server requests.
+**Scripting** – `ClientScript` definitions are executed by `ScriptRunner` with a custom bytecode interpreter.
+**Rendering** – `dash3d` and `graphics` contain the engine for terrain, models, and GUI drawing.
+**Audio** – `midi` and `sound` support MIDI playback and PCM streaming.
+**UI** – `client.ui` houses interface widgets, caching, and event handling.
+**Data** – `config` provides object/animation definitions and enumerations, while `datastruct` has hash tables and linked lists.
+**Utility** – `io` delivers compression, encryption, and network I/O helpers.
+
+Build & installation
+--------------------
+Install JDK 8 and use the Gradle wrapper to build and run the client:
+
+```bash
+sudo apt-get update && sudo apt-get install -y openjdk-8-jdk
+./gradlew build
+./gradlew run
+```
+
+See `INSTALL.md` for a full list of commands.
+
+=======
 Deep dive
 =========
 This project spans roughly 52k lines across about 185 Java files. The major subsystems are:
