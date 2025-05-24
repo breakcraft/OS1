@@ -59,3 +59,12 @@ tasks.register('loadMappings', JavaExec) {
     main = 'deob.MappingLoader'
     args = ['proguard.map']
 }
+
+// Task to apply mappings and rename source files
+tasks.register('applyMappings', JavaExec) {
+    group = 'deob'
+    description = 'Apply deobfuscation mappings to Java source files'
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'deob.MappingApplier'
+    args = ['proguard.map', 'src/main/java']
+}

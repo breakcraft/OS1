@@ -13,11 +13,16 @@
 
  ### In Progress
  - [ ] Integrate deobfuscation mapping files to automate renaming
-  - [x] Prototype MappingLoader utility for parsing ProGuard map
-  - [x] Gradle `loadMappings` task to run MappingLoader
+    - [x] Prototype MappingLoader utility for parsing ProGuard map
+    - [x] Gradle `loadMappings` task to run MappingLoader
+ - [ ] Automatic renaming of classes, methods, and fields based on mapping
+    - [x] Scaffold MappingApplier utility for class renaming
+    - [x] Gradle `applyMappings` task to run MappingApplier
+    - [ ] Handle class renaming in source files
+    - [ ] Handle method renaming in source files
+    - [ ] Handle field renaming in source files
 
  ### Pending
- - [ ] Rename classes, methods, and fields based on deob map.
  - [ ] Identify and extract inlined functions.
  - [ ] Restore exception messages stripped during deobfuscation.
  - [ ] Simplify split variable declarations (e.g., var1, var2).
@@ -31,6 +36,7 @@
  - [ ] Address any outstanding TODOs in code comments.
 
  ## Next Steps
- 1. Begin integrating deobfuscation mapping files to automate renaming.
- 2. Update this roadmap to reflect progress (mark tasks In Progress/Completed).
- 3. After mapping integration, move onto renaming classes, methods, and fields based on the deob map.
+ 1. Complete class renaming: enhance MappingApplier to rewrite file names and references.
+ 2. Implement method-level renaming support in MappingApplier.
+ 3. Implement field-level renaming support in MappingApplier.
+ 4. Update this roadmap as each subtask moves from In Progress to Completed.
