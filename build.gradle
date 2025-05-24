@@ -50,3 +50,12 @@ tasks.register('proguard', proguard.gradle.ProGuardTask) {
 
     outjars(layout.buildDirectory.file("libs/${project.name}.rel.jar"))
 }
+
+// Task to load and summarize deobfuscation mappings
+tasks.register('loadMappings', JavaExec) {
+    group = 'deob'
+    description = 'Load and summarize deobfuscation mappings from proguard.map'
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'deob.MappingLoader'
+    args = ['proguard.map']
+}
