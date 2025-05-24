@@ -8,19 +8,16 @@
  ### Completed
  - [x] Environment setup with JDK8 and Gradle wrapper.
  - [x] Verified build (`./gradlew build`) and run (`./gradlew run`).
- - [x] High-level codebase overview and explanation created.
- - [x] Established project tracking and roadmap.
+ - [x] Integrate deobfuscation mapping files to automate renaming
+ - [x] Automatic renaming of classes, methods, and fields based on mapping
+  - [x] Scaffold MappingApplier utility for class renaming
+  - [x] Gradle `applyMappings` task to run MappingApplier
+  - [x] Handle class renaming in source files
+  - [x] Handle method renaming in source files
+  - [x] Handle field renaming in source files
 
  ### In Progress
- - [ ] Integrate deobfuscation mapping files to automate renaming
-    - [x] Prototype MappingLoader utility for parsing ProGuard map
-    - [x] Gradle `loadMappings` task to run MappingLoader
- - [ ] Automatic renaming of classes, methods, and fields based on mapping
-    - [x] Scaffold MappingApplier utility for class renaming
-    - [x] Gradle `applyMappings` task to run MappingApplier
-    - [ ] Handle class renaming in source files
-    - [ ] Handle method renaming in source files
-    - [ ] Handle field renaming in source files
+<!-- All mapping integration and automated renaming tasks completed -->
 
  ### Pending
  - [ ] Identify and extract inlined functions.

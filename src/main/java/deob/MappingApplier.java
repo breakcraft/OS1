@@ -31,6 +31,7 @@ public class MappingApplier {
             classMapInv.put(destName, origFqn);
         }
 
+        // First, rename classes and update their declarations
         for (Map.Entry<String, String> entry : classMapInv.entrySet()) {
             String obfSimple = entry.getKey();
             String origFqn = entry.getValue();
@@ -68,6 +69,49 @@ public class MappingApplier {
             }
             System.out.println("Renamed " + obfFile.getPath() + " -> " + origFile.getPath());
         }
+        // Next, apply method and field renaming across all source files
+        // Invert method and field mappings: obfName -> originalName
+        Map<String, String> methodMapInv = new LinkedHashMap<String, String>();
+        for (Map.Entry<String, String> e : mapping.methodMap.entrySet()) {
+            String key = e.getKey(); // originalFqn.methodName(params)
+            String obfName = e.getValue();
+            String origWithSig = key.substring(key.lastIndexOf('.') + 1);
+            String origName = origWithSig;
+            int p = origWithSig.indexOf('(');
+            if (p >= 0) origName = origWithSig.substring(0, p);
+            methodMapInv.put(obfName, origName);
+        }
+        Map<String, String> fieldMapInv = new LinkedHashMap<String, String>();
+        for (Map.Entry<String, String> e : mapping.fieldMap.entrySet()) {
+            String key = e.getKey(); // originalFqn.fieldName
+            String obfName = e.getValue();
+            String origName = key.substring(key.lastIndexOf('.') + 1);
+            fieldMapInv.put(obfName, origName);
+        }
+        // Traverse all Java files under srcRoot
+        java.util.List<File> javaFiles = new java.util.ArrayList<File>();
+        collectJavaFiles(srcRoot, javaFiles);
+        for (File javaFile : javaFiles) {
+            String content = readFile(javaFile);
+            String updated = content;
+            // Replace method invocations and declarations
+            for (Map.Entry<String, String> m : methodMapInv.entrySet()) {
+                String obf = m.getKey();
+                String orig = m.getValue();
+                // match word boundary + obf + optional spaces before '('
+                updated = updated.replaceAll("\\b" + obf + "\\s*\\(", orig + "(");
+            }
+            // Replace field references
+            for (Map.Entry<String, String> f : fieldMapInv.entrySet()) {
+                String obf = f.getKey();
+                String orig = f.getValue();
+                updated = updated.replaceAll("\\b" + obf + "\\b", orig);
+            }
+            if (!updated.equals(content)) {
+                writeFile(javaFile, updated);
+                System.out.println("Updated members in " + javaFile.getPath());
+            }
+        }
     }
 
     private static String readFile(File file) throws IOException {
@@ -95,6 +139,20 @@ public class MappingApplier {
         } finally {
             if (writer != null) {
                 writer.close();
+            }
+        }
+    }
+    /**
+     * Recursively collect all .java files under a directory.
+     */
+    private static void collectJavaFiles(File dir, java.util.List<File> list) {
+        File[] files = dir.listFiles();
+        if (files == null) return;
+        for (File f : files) {
+            if (f.isDirectory()) {
+                collectJavaFiles(f, list);
+            } else if (f.getName().endsWith(".java")) {
+                list.add(f);
             }
         }
     }
