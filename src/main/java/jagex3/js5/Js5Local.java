@@ -200,10 +200,10 @@ public class Js5Local extends Js5Index {
 		crc32.update(arg2, 0, arg2.length);
 		int var5 = (int) crc32.getValue();
 		Packet var6 = new Packet(Js5Index.decompress(arg2));
-		int var7 = var6.g1();
-		if (var7 != 5 && var7 != 6) {
-			throw new RuntimeException("");
-		}
+                int var7 = var6.g1();
+                if (var7 != 5 && var7 != 6) {
+                        throw new RuntimeException("Unsupported JS5 index protocol: " + var7);
+                }
 		int var8 = 0;
 		if (var7 >= 6) {
 			var8 = var6.g4();

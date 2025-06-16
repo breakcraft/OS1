@@ -19,19 +19,19 @@ public class GZip {
 
 	@ObfuscatedName("bf.r(Lev;[BB)V")
 	public void decompress(Packet arg0, byte[] arg1) {
-		if (arg0.data[arg0.pos] != 31 || arg0.data[arg0.pos + 1] != -117) {
-			throw new RuntimeException("");
-		}
+                if (arg0.data[arg0.pos] != 31 || arg0.data[arg0.pos + 1] != -117) {
+                        throw new RuntimeException("Invalid GZIP header");
+                }
 		if (this.inflater == null) {
 			this.inflater = new Inflater(true);
 		}
 		try {
 			this.inflater.setInput(arg0.data, arg0.pos + 10, arg0.data.length - (arg0.pos + 10 + 8));
 			this.inflater.inflate(arg1);
-		} catch (Exception var4) {
-			this.inflater.reset();
-			throw new RuntimeException("");
-		}
+                } catch (Exception var4) {
+                        this.inflater.reset();
+                        throw new RuntimeException("Error decompressing GZIP data");
+                }
 		this.inflater.reset();
 	}
 }

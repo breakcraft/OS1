@@ -25,17 +25,17 @@ public class CacheUtil {
 	@ObfuscatedName("j.r(Ljava/io/File;I)V")
 	public static void method61(File arg0) {
 		field369 = arg0;
-		if (!field369.exists()) {
-			throw new RuntimeException("");
-		}
+                if (!field369.exists()) {
+                        throw new RuntimeException("Cache base directory does not exist");
+                }
 		field370 = true;
 	}
 
 	@ObfuscatedName("co.d(Ljava/lang/String;I)Ljava/io/File;")
 	public static File method1039(String arg0) {
-		if (!field370) {
-			throw new RuntimeException("");
-		}
+                if (!field370) {
+                        throw new RuntimeException("Cache system not initialised");
+                }
 		File var1 = (File) field371.get(arg0);
 		if (var1 != null) {
 			return var1;
@@ -43,10 +43,10 @@ public class CacheUtil {
 		File var2 = new File(field369, arg0);
 		RandomAccessFile var3 = null;
 		try {
-			File var4 = new File(var2.getParent());
-			if (!var4.exists()) {
-				throw new RuntimeException("");
-			}
+                        File var4 = new File(var2.getParent());
+                        if (!var4.exists()) {
+                                throw new RuntimeException("Parent directory does not exist");
+                        }
 			var3 = new RandomAccessFile(var2, "rw");
 			int var5 = var3.read();
 			var3.seek(0L);

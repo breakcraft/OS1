@@ -89,9 +89,9 @@ public class Huffman {
 			int var9 = arg0[arg1] & 0xFF;
 			int var10 = this.field803[var9];
 			byte var11 = this.field802[var9];
-			if (var11 == 0) {
-				throw new RuntimeException("");
-			}
+                        if (var11 == 0) {
+                                throw new RuntimeException("Invalid Huffman code");
+                        }
 			int var12 = var7 >> 3;
 			int var13 = var7 & 0x7;
 			int var14 = var6 & -var13 >> 31;
