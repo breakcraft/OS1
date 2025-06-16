@@ -14,7 +14,8 @@
   - [x] Gradle `applyMappings` task to run MappingApplier
   - [x] Handle class renaming in source files
   - [x] Handle method renaming in source files
-  - [x] Handle field renaming in source files
+ - [x] Handle field renaming in source files
+ - [x] Set up CI / pre-commit checks.
 
  ### In Progress
 <!-- All mapping integration and automated renaming tasks completed -->
@@ -25,9 +26,8 @@
  - [ ] Simplify split variable declarations (e.g., var1, var2).
  - [ ] Refactor messy string-building code.
  - [ ] Add Javadoc comments to core subsystems.
- - [ ] Document build & run instructions in INSTALL.md.
- - [ ] Set up CI / pre-commit checks.
- - [ ] Write developer contribution guide.
+- [ ] Document build & run instructions in INSTALL.md.
+- [ ] Write developer contribution guide.
  - [ ] Validate code compiles and all existing tests (if any) pass.
  - [ ] Document networking, rendering, scripting, UI, and data-handling modules.
  - [ ] Address any outstanding TODOs in code comments.
